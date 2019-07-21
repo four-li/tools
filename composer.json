@@ -1,0 +1,22 @@
+{
+  "name": "four-li/tools",
+  "description": "快速开发工具",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "four-li",
+      "email": "chuanfeng.chen@ushopal.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.1.19",
+    "php-curl-class/php-curl-class": "^8.5",
+    "qcloudsms/qcloudsms_php": "0.1.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "FourLi\\Tools\\": "src/"
+    }
+  }
+}

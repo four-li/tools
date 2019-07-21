@@ -1,0 +1,8 @@
+### idea
+/.idea/
+/.DS_Store
+.DS_Store
+
+###> symfony/framework-bundle ###
+/var/
+/vendor/
