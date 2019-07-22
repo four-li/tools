@@ -3,6 +3,14 @@ Excle类
 
 ## 表格读取
 
+#### 支持
+
+- [x] toArray() 自动读取表格类型 将excel数组转为数组
+- [x] readFilter() 传递第二个参数过滤读取列
+- [x] setIsFilterNullRow() 是否将读取的结果 过滤空行 默认ture过滤
+
+#### 使用
+
 ```php
 $office = new \FourLi\Tools\Office\ExcelReader();
 $file   = __DIR__ . '/demo.csv';

@@ -1,12 +1,19 @@
 four-li开发辅助工具包
 ___
 
-![](https://img.shields.io/badge/four_li_tools-v.1.0-brightgreen.svg)
+![](https://img.shields.io/badge/four_li'_tools-v.1.0-brightgreen.svg?style=social&logo=appveyor)
+![](https://img.shields.io/badge/php-7.3-orange.svg)
 
 ## 安装
 ```bash
 composer require four-li/tools
 ```
+
+## 支持
+
+- [x] [短信类](/src/Document/sms.md) 
+- [x] [Excel类](/src/Document/excel.md)
+
 
 ## 使用
 
@@ -22,8 +29,3 @@ $client = new \FourLi\Tools\Sms\Tencent\Client(
 
 $client->singleSend('手机号', ['模板中需要的参数1','模板中需要的参数2' ], '模板id1');
 ``` 
-
-## 支持
-
-- [x] [短信类](/src/Document/sms.md) 
-- [x] [Excel类](/src/Document/)
