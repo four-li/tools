@@ -12,7 +12,8 @@
   "require": {
     "php": ">=7.1.19",
     "php-curl-class/php-curl-class": "^8.5",
-    "qcloudsms/qcloudsms_php": "0.1.*"
+    "qcloudsms/qcloudsms_php": "0.1.*",
+    "phpoffice/phpspreadsheet": "^1.8"
   },
   "autoload": {
     "psr-4": {
