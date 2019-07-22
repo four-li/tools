@@ -22,7 +22,7 @@ class Client extends SmsService
         $this->password  = $password;
         $this->templates = $templates;
     }
-    
+
     /**
      * - i.e. 单条短信发送
      * - e.g.
@@ -40,8 +40,11 @@ class Client extends SmsService
         $sendAPI  = new ZhuTongUtils($url, $username, $password);
 
         $tempId = $templateId ?: $this->currentTemplateId;
-        $data   = array(
-            'content' => $templateParameters ? $tempId . $templateParameters[0] : '',//短信内容
+
+        $content = sprintf($tempId, ...$templateParameters);
+
+        $data = array(
+            'content' => $content,//短信内容
             'mobile'  => $mobile,//手机号码
             // 'xh'		=> ''//小号
         );

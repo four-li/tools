@@ -49,12 +49,17 @@ $client = new \FourLi\Tools\Sms\RongLian\Client($accountSid, $accountToken, $app
 
 //$ret = $client->useTemplate('验证码')->singleSend(13971777435, ['verifyCode']);
 
+
 ##### 祝通科技 #####
 $USERNAME = '';
 $PASSWORD = '';
-$TEMPLATE = ['验证码' => '【xx公司】您的验证码为：'];
+$TEMPLATE = [
+    '验证码'   => '【it】您的验证码为：%s',
+    '普通通知类' => '【it】%s 签到成功于 %s'
+];
 
 $client = new \FourLi\Tools\Sms\ZhuTong\Client($USERNAME, $PASSWORD, $TEMPLATE);
-$ret    = $client->useTemplate('验证码')->singleSend(13971777435, ['asdad']);
+$ret    = $client->useTemplate('普通通知类')->singleSend(13971777435, ['李四', '2019-07-22 12:10:10']);
+
 
 var_dump($ret);

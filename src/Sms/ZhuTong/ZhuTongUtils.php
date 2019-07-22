@@ -50,7 +50,7 @@ class ZhuTongUtils
         curl_setopt($curl, CURLOPT_URL, $this->apiUrl); // 要访问的地址
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); // 对认证证书来源的检查
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false); // 从证书中检查SSL加密算法是否存在
-        curl_setopt($curl, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']); // 模拟用户使用的浏览器
+        curl_setopt($curl, CURLOPT_USERAGENT, @$_SERVER['HTTP_USER_AGENT']); // 模拟用户使用的浏览器
         curl_setopt($curl, CURLOPT_POST, true); // 发送一个常规的Post请求
         curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($this->data)); // Post提交的数据包
         curl_setopt($curl, CURLOPT_TIMEOUT, $this->timeout); // 设置超时限制防止死循环
@@ -73,7 +73,8 @@ class ZhuTongUtils
     {
         $this->data['content']  = $isTranscoding === true ? mb_convert_encoding($this->data['content'], "UTF-8") : $this->data['content'];
         $this->data['username'] = $this->username;
-        $this->data['tkey']     = date('YmdHis');
+        date_default_timezone_set("PRC");
+        $this->data['tkey']     = date('YmdHis', time());
         $this->data['password'] = md5(md5($this->password) . $this->data['tkey']);
         return $type == "POST" ? $this->httpPost() : $this->httpGet();
     }
