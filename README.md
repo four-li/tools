@@ -13,7 +13,8 @@ composer require four-li/tools
 
 - [x] [短信类](/src/Document/sms.md) 
 - [x] [Excel类](/src/Document/excel.md)
-
+- [x] [apiSDK](/src/Document/sdk.md)
+- [x] [支付类](/src/Document/pay.md)
 
 ## 使用
 

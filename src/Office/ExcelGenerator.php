@@ -8,7 +8,6 @@ namespace FourLi\Tools\Office;
 
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Style\Color;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class ExcelGenerator

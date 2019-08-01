@@ -18,6 +18,9 @@
   "autoload": {
     "psr-4": {
       "FourLi\\Tools\\": "src/"
-    }
+    },
+    "files": [
+      "spl/helpers.php"
+    ]
   }
 }
