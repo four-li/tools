@@ -15,6 +15,9 @@ composer require four-li/tools
 - [x] [Excel类](/src/Document/excel.md)
 - [x] [apiSDK](/src/Document/sdk.md)
 - [x] [支付类](/src/Document/pay.md)
+- [x] [IP解析类](/src/Document/ip.md) 
+
+- [ ] 自定义助手函数(详情查看`sql/helpers.php`) 
 
 ## 使用
 

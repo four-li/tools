@@ -218,4 +218,176 @@ if (!function_exists('explodeStr')) {
     }
 }
 
+if (!function_exists('computePer')) {
+    /**
+     * ~ i.e. 计算百分比
+     * ~ e.g.
+     *
+     * @param int $numerator   分子
+     * @param int $denominator 分母
+     * @return int
+     */
+    function computePer(int $numerator, int $denominator = 100, $float = 2)
+    {
+        return round(($numerator / $denominator) * 100, $float);
+    }
+}
 
+if (!function_exists('inStr')) {
+    /**
+     * - i.e. 搜索一段字符串是否在另一串字符串中出现
+     * - e.g.
+     *
+     * @param $search
+     * @param $haystack
+     * @return bool
+     */
+    function inStr($search, $haystack): bool
+    {
+        if (strpos($haystack, strval($search)) === false) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+}
+
+if (!function_exists('toRoute')) {
+    # 跳转路由
+    function toRoute($url)
+    {
+        echo sprintf(
+            '<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0;url=%1$s" />
+</head>
+</html>', htmlspecialchars($url, ENT_QUOTES, 'UTF-8'));
+        die;
+    }
+}
+
+# 跳转路由
+function toRoute($url)
+{
+    echo sprintf(
+        '<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0;url=%1$s" />
+</head>
+</html>', htmlspecialchars($url, ENT_QUOTES, 'UTF-8'));
+    die;
+}
+
+if (!defined('ENCRYPT_DEFAULT_KEY')) define('ENCRYPT_DEFAULT_KEY', 'zfi-0o.`;=');
+
+if (!defined('ENCRYPT_IV_STR')) define('ENCRYPT_IV_STR', 'four.li-……&%*riS%23())*(^&123!23');
+
+if (!function_exists('opensslEncode')) {
+    # 字符串openssl加密
+    function opensslEncode($strData): string
+    {
+        $openssl_method = 'AES-256-CBC';
+        $openssl_iv     = substr(ENCRYPT_IV_STR, 0, 16); # 16位
+
+        $openssl_password = substr(md5(ENCRYPT_DEFAULT_KEY), 0, 16);
+        # 加密
+        return openssl_encrypt($strData, $openssl_method, $openssl_password, 0, $openssl_iv);
+    }
+}
+
+if (!function_exists('opensslDecode')) {
+# 字符串openssl解密密
+    function opensslDecode($strData): string
+    {
+        $openssl_method = 'AES-256-CBC';
+        $openssl_iv     = substr(ENCRYPT_IV_STR, 0, 16); # 16位
+
+        $openssl_password = substr(md5(ENCRYPT_DEFAULT_KEY), 0, 16);
+        return openssl_decrypt($strData, $openssl_method, $openssl_password, 0, $openssl_iv);
+    }
+}
+
+if (!function_exists('__encrypt')) {
+    # 数组加密为字符串
+    function __encrypt(array $data, string $key = '', int $expire = 0): string
+    {
+        $key  = md5(empty($key) ? ENCRYPT_DEFAULT_KEY : $key);
+        $data = base64_encode(json_encode($data));
+        $x    = 0;
+        $len  = strlen($data);
+        $l    = strlen($key);
+        $char = '';
+
+        for ($i = 0; $i < $len; $i++) {
+            if ($x == $l)
+                $x = 0;
+            $char .= substr($key, $x, 1);
+            $x++;
+        }
+
+        $str = sprintf('%010d', $expire ? $expire + time() : 0);
+
+        for ($i = 0; $i < $len; $i++) {
+            $str .= chr(ord(substr($data, $i, 1)) + (ord(substr($char, $i, 1))) % 256);
+        }
+        return str_replace(array(
+            '+',
+            '/',
+            '='
+        ), array(
+            '-',
+            '_',
+            ''
+        ), base64_encode($str));
+    }
+}
+
+if (!function_exists('__decrypt')) {
+    # 解密成数组
+    function __decrypt(string $data, string $key = '')
+    {
+        $key  = md5(empty($key) ? ENCRYPT_DEFAULT_KEY : $key);
+        $data = str_replace(array(
+            '-',
+            '_'
+        ), array(
+            '+',
+            '/'
+        ), $data);
+        $mod4 = strlen($data) % 4;
+        if ($mod4) {
+            $data .= substr('====', $mod4);
+        }
+        $data   = base64_decode($data);
+        $expire = substr($data, 0, 10);
+        $data   = substr($data, 10);
+
+        if ($expire > 0 && $expire < time()) {
+            return null;
+        }
+        $x    = 0;
+        $len  = strlen($data);
+        $l    = strlen($key);
+        $char = $str = '';
+
+        for ($i = 0; $i < $len; $i++) {
+            if ($x == $l)
+                $x = 0;
+            $char .= substr($key, $x, 1);
+            $x++;
+        }
+
+        for ($i = 0; $i < $len; $i++) {
+            if (ord(substr($data, $i, 1)) < ord(substr($char, $i, 1))) {
+                $str .= chr((ord(substr($data, $i, 1)) + 256) - ord(substr($char, $i, 1)));
+            } else {
+                $str .= chr(ord(substr($data, $i, 1)) - ord(substr($char, $i, 1)));
+            }
+        }
+        return json_decode(base64_decode($str), true);
+    }
+}
