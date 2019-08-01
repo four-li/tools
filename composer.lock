@@ -4,8 +4,126 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "835264b7ce6438a4496f60e2aadc0a35",
+    "content-hash": "9daebd4d62f9b3a9307ae862b4ec1b44",
     "packages": [
+        {
+            "name": "catfan/medoo",
+            "version": "v1.7.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/catfan/Medoo.git",
+                "reference": "b9dfce4046f3eb48a647ef72991bb65012f99376"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/catfan/Medoo/zipball/b9dfce4046f3eb48a647ef72991bb65012f99376",
+                "reference": "b9dfce4046f3eb48a647ef72991bb65012f99376",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "ext-pdo": "*",
+                "php": ">=5.4"
+            },
+            "suggest": {
+                "ext-pdo_dblib": "For MSSQL or Sybase database on Linux/UNIX platform",
+                "ext-pdo_mysql": "For MySQL or MariaDB database",
+                "ext-pdo_oci": "For Oracle database",
+                "ext-pdo_oci8": "For Oracle version 8 database",
+                "ext-pdo_pqsql": "For PostgreSQL database",
+                "ext-pdo_sqlite": "For SQLite database",
+                "ext-pdo_sqlsrv": "For MSSQL database on both Window/Liunx platform"
+            },
+            "type": "framework",
+            "autoload": {
+                "psr-4": {
+                    "Medoo\\": "/src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Angel Lai",
+                    "email": "angel@catfan.me"
+                }
+            ],
+            "description": "The lightweight PHP database framework to accelerate development",
+            "homepage": "https://medoo.in",
+            "keywords": [
+                "database",
+                "database library",
+                "lightweight",
+                "mariadb",
+                "mssql",
+                "mysql",
+                "oracle",
+                "php framework",
+                "postgresql",
+                "sql",
+                "sqlite"
+            ],
+            "time": "2019-07-13T14:52:50+00:00"
+        },
+        {
+            "name": "ipip/db",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ipipdotnet/ipdb-php.git",
+                "reference": "af42bf28b37dc76beccd7bbe2b0b0572e21f42cf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ipipdotnet/ipdb-php/zipball/af42bf28b37dc76beccd7bbe2b0b0572e21f42cf",
+                "reference": "af42bf28b37dc76beccd7bbe2b0b0572e21f42cf",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ipip\\db\\": "src/ipip/db/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "IPIP.net",
+                    "email": "frk@ipip.net",
+                    "homepage": "https://www.ipip.net"
+                }
+            ],
+            "description": "IPIP.net officially supported IP database ipdb format parsing library",
+            "homepage": "https://www.ipip.net",
+            "keywords": [
+                "IP",
+                "geo",
+                "geoip",
+                "geolocation",
+                "ipdb",
+                "ipip.net"
+            ],
+            "time": "2018-11-01T08:07:04+00:00"
+        },
         {
             "name": "markbaker/complex",
             "version": "1.4.7",
