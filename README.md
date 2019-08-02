@@ -1,4 +1,4 @@
-four-li开发辅助工具包
+开发辅助工具包
 ___
 
 ![](https://img.shields.io/badge/four_li'_tools-v.1.0-brightgreen.svg?style=social&logo=appveyor)
@@ -18,7 +18,7 @@ composer require four-li/tools
 - [x] [支付类](/src/Document/pay.md)
 - [x] [IP解析类](/src/Document/ip.md) 
 
-- [ ] 自定义助手函数(详情查看`sql/helpers.php`) 
+- [ ] 自定义助手函数(详情查看`spl/helpers.php`) 
 
 ## 使用
 
@@ -33,4 +33,9 @@ $client = new \FourLi\Tools\Sms\Tencent\Client(
 );
 
 $client->singleSend('手机号', ['模板中需要的参数1','模板中需要的参数2' ], '模板id1');
+
+// 如解析ip地址
+$client = new FourLi\Tools\Ip\Resolver();
+$ret = $client->resolveIpToRegions('60.1.2.1');
+var_dump($ret);
 ``` 
