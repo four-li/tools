@@ -11,13 +11,13 @@ composer require four-li/tools
 
 ## 支持
 
-- [x] [短信类](/src/Document/sms.md) 
-- [x] [Excel类](/src/Document/excel.md)
-- [x] [apiSDK](/src/Document/sdk.md)
-- [x] [支付类](/src/Document/pay.md)
-- [x] [IP解析类](/src/Document/ip.md) 
+- [x] [短信](/src/Document/sms.md) 
 - [x] [二维码](/src/Document/qrcode.md)
-- [x] [更多工具类](/src/Document/utils.md)
+- [x] [Excel](/src/Document/excel.md)
+- [x] [apiSDK](/src/Document/sdk.md)
+- [x] [支付](/src/Document/pay.md)
+- [x] [IP解析](/src/Document/ip.md) 
+- [x] [更多工具](/src/Document/utils.md)
 
 - [ ] 自定义助手函数(详情查看`spl/helpers.php`) 
 

@@ -73,7 +73,7 @@ class ApiQrcode
             $text = json_decode($ret, true)['data']['raw_text'];
             return $text;
         } catch (\Exception $e) {
-            return '';
+            return false;
         }
     }
 
