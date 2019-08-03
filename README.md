@@ -13,10 +13,11 @@ composer require four-li/tools
 
 - [x] [短信类](/src/Document/sms.md) 
 - [x] [Excel类](/src/Document/excel.md)
-- [x] [函数类](/src/Document/utils.md)
 - [x] [apiSDK](/src/Document/sdk.md)
 - [x] [支付类](/src/Document/pay.md)
 - [x] [IP解析类](/src/Document/ip.md) 
+- [x] [二维码](/src/Document/qrcode.md)
+- [x] [更多工具类](/src/Document/utils.md)
 
 - [ ] 自定义助手函数(详情查看`spl/helpers.php`) 
 
@@ -31,7 +32,6 @@ $client = new \FourLi\Tools\Sms\Tencent\Client(
     'appKey',
     '签名'
 );
-
 $client->singleSend('手机号', ['模板中需要的参数1','模板中需要的参数2' ], '模板id1');
 
 // 如解析ip地址

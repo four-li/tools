@@ -15,7 +15,9 @@
     "qcloudsms/qcloudsms_php": "0.1.*",
     "phpoffice/phpspreadsheet": "^1.8",
     "ipip/db": "^1.0",
-    "catfan/medoo": "^1.7"
+    "catfan/medoo": "^1.7",
+    "endroid/qr-code": "^3.5",
+    "khanamiryan/qrcode-detector-decoder": "^1.0"
   },
   "autoload": {
     "psr-4": {
