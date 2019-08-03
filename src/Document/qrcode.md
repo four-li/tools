@@ -1,11 +1,15 @@
 二维码解析、生成
 ---
 
+> 支持两种方式  
+1 使用php类库（推荐） 
+2 使用三方api（需付费且不稳定）
 
-## 使用php库
+## 使用php库 （推荐）
+
+### 生成二维码
 
 ```php
-# 使用PHP二维码库
 $client = new FourLi\Tools\QrCode\PhpQrcode();
 # 生成二维码
 $client->setLogo(__DIR__ . '/../Qrcode/logo.jpg', 100, 100)# 设置logo
@@ -17,10 +21,16 @@ $client->setLogo(__DIR__ . '/../Qrcode/logo.jpg', 100, 100)# 设置logo
 # 要保存二维码图片的路径
 $savePath = __DIR__ . '/../QrCode/test.png';
 $client->generator('https://github.com/four-li/tools', $savePath);
+```
 
+### 解析二维码
+
+```php
 # 解析二维码
-$text = $client->reader($savePath);
-var_dump($text);
+$img = __DIR__ . '/../Qrcode/logo.jpg';
+$client = new FourLi\Tools\QrCode\PhpQrcode();
+$text = $client->reader($img);
+var_dump($text);```
 ```
 
 方法 | 参数 |  解释 
@@ -28,6 +38,7 @@ var_dump($text);
 reader | `$img`: 需要解析的图片路径 | 解析二维码图片的内容 返回字符串 或 false为解析失败 |
 generator | `$text`:二维码的内容 `$path`: 保存的路径 | 生成二维码 更多set支持 |
 
+---
 
 ## 调用api 
 
