@@ -25,7 +25,7 @@ class PhpQrcode
         $this->qrCode->setErrorCorrectionLevel(new ErrorCorrectionLevel(ErrorCorrectionLevel::HIGH));
     }
 
-    public function setLogo($logoPath, $width = 80, $height = 80)
+    public function setLogo(string $logoPath, int $width = 80, int $height = 80)
     {
         $qrCode = $this->qrCode;
 
@@ -70,7 +70,7 @@ class PhpQrcode
      * @param $color
      * @return $this
      */
-    public function setForegroundColor($color = 'black')
+    public function setForegroundColor(string $color = 'black')
     {
         $property   = $this->colorConvert[$color];
         $colorParam = [
@@ -91,7 +91,7 @@ class PhpQrcode
      * @param     $color
      * @return $this
      */
-    public function setBackgroudColor($color = 'white')
+    public function setBackgroudColor(string $color = 'white')
     {
         $property   = $this->colorConvert[$color];
         $colorParam = [
@@ -123,19 +123,28 @@ class PhpQrcode
      * - i.e. 解析二维码 注意该库不能解析乱七八糟颜色的二维码
      * - e.g.
      *
-     * @param $qrCodePath
+     * @param $imgPath
      * @return mixed
      */
-    public function reader($qrCodePath)
+    public function reader(string $imgPath)
     {
-        $qrcode = new QrReader($qrCodePath);
+        $qrcode = new QrReader($imgPath);
 
         return $qrcode->text();
     }
 
-    public function generator(string $text, $savePath)
+    public function download($fileName = 'qrcode.png')
+    {
+        $this->outputDownload($this->savePath, $fileName);
+
+        return true;
+    }
+
+    public function generator(string $text, string $savePath)
     {
         $qrCode = $this->qrCode;
+
+        $this->savePath = $savePath;
 
         $qrCode->setText($text);
 
@@ -143,6 +152,27 @@ class PhpQrcode
 
         $qrCode->writeFile($savePath);
 
-        return true;
+        return $this;
+    }
+
+    /**
+     * 输出文件到浏览器
+     *
+     * @param string $filename 文件路径
+     * @param string $title    输出的文件名
+     * @return void
+     */
+    private function outputDownload($filename, $title)
+    {
+        $file = fopen($filename, "rb");
+        Header("Content-type:  application/octet-stream ");
+        Header("Accept-Ranges:  bytes ");
+        Header("Content-Disposition:  attachment;  filename= $title");
+        while (!feof($file)) {
+            echo fread($file, 8192);
+            ob_flush();
+            flush();
+        }
+        fclose($file);
     }
 }

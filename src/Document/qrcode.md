@@ -5,7 +5,7 @@
 1 使用php类库（推荐） 
 2 使用三方api（需付费且不稳定）
 
-## 使用php库 （推荐）
+# 使用php库 （推荐）
 
 ### 生成二维码
 
@@ -25,12 +25,13 @@ $client->generator('https://github.com/four-li/tools', $savePath);
 
 ### 解析二维码
 
+> 不支持解析小程序码
+
 ```php
-# 解析二维码
 $img = __DIR__ . '/../Qrcode/logo.jpg';
 $client = new FourLi\Tools\QrCode\PhpQrcode();
 $text = $client->reader($img);
-var_dump($text);```
+var_dump($text);
 ```
 
 方法 | 参数 |  解释 
@@ -40,11 +41,54 @@ generator | `$text`:二维码的内容 `$path`: 保存的路径 | 生成二维�
 
 ---
 
-## 调用api 
 
-该二维码调用阿里云付费接口
+# 调用api 
+
+以下为调用[阿里云彩色二维码生成与解码API](https://market.aliyun.com/products/57126001/cmapi021204.html?spm=5176.2020520132.101.1.6c587218rg6Fg0#sku=yuncode1520400000)  需付费
+
+### 生成二维码
 
 ```php
+$appcode = ''; # 从接口提供商获取的appcode
+$client  = new \FourLi\Tools\QrCode\ApiQrcode($appcode);
 
+$imgPath = __DIR__ . '/../QrCode/test.png';
+//$imgUrl = 'img.xx.com/a.jpg';
+
+$client
+    ->setSize(500)
+    ->setForegroundColor('#888888')
+    ->setBackgroudColor('#EEEEEE');
+
+# 生成二维码
+$client->generator('李四哥', $imgPath)->download('李四哥.png')
+;
 ```
 
+### 解析二维码
+
+> 不支持解析小程序码
+
+```php
+$appcode = ''; # 从接口提供商获取的appcode
+$client  = new \FourLi\Tools\QrCode\ApiQrcode($appcode);
+
+$imgPath = __DIR__ . '/../QrCode/test.png';
+//$imgUrl = 'img.xx.com/a.jpg';
+
+# 解析二维码 支持本地文件和在线图片url
+$text = $client->reader($imgPath);
+var_dump($text);
+```
+
+方法 | 参数 |  解释 
+-|-|-
+reader | `$img`: 需要解析的图片路径 或在线图片url | 解析二维码图片的内容 返回字符串 或 false为解析失败 |
+generator | `$text`:二维码的内容 `$path`: 保存的路径 | 生成二维码 更多set支持 |
+
+
+## 测试
+
+```bash
+php -S localhost:8100 src/Example/qrcode.php
+```
