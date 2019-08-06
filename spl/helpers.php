@@ -391,3 +391,25 @@ if (!function_exists('__decrypt')) {
         return json_decode(base64_decode($str), true);
     }
 }
+
+
+if (!function_exists('cdebug')) {
+    function cdebug($message = '', $context = [])
+    {
+        $debugMsg  = debug_backtrace();
+        $file      = $debugMsg[0]['file'];
+        $line      = $debugMsg[0]['line'];
+        $debugData = [
+            'channel' => 'middebuger',
+            'date'    => date('Y-m-d H:i:s'),
+            'msg'     => $message,
+            'context' => $context,
+            'file'    => $file,
+            'line'    => $line,
+        ];
+
+        $filePath = '/tmp/cdebug.log';
+
+        file_put_contents($filePath, json_encode($debugData, JSON_UNESCAPED_UNICODE) . PHP_EOL, FILE_APPEND);
+    }
+}
