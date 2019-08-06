@@ -4,9 +4,9 @@ include_once __DIR__ . '/../../vendor/autoload.php';
 
 #####【 请求客户端 】#####
 
-$appKey    = 'appkey11';
-$appSecret = 'appsecret22';
-$host      = 'http://localhost';
+$appKey    = 'appkey11'; # 服务器端分配的appkey11
+$appSecret = 'appsecret22'; # 服务器端分配的appsecret22
+$host      = 'http://localhost'; # 服务器端请求地址
 
 $sdk = new \FourLi\Tools\Sdk\Sdk($host, $appKey, $appSecret);
 
@@ -85,6 +85,7 @@ class TestRequst implements \FourLi\Tools\Sdk\ClientInterface
 $req = new TestRequst();
 $req->setId(123123)->setOtherParam(['其它参数' => '我是自定义的']);
 
+# 请求返回结果
 $ret = $sdk->getRawResponse($req);
 
 var_dump($ret);
