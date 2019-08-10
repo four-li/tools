@@ -54,15 +54,6 @@ class StrHandler
         return null;
     }
 
-
-    private function getEncoding($data, $to)
-    {
-        $encode_arr = array('UTF-8', 'ASCII', 'GBK', 'GB2312', 'BIG5', 'JIS', 'eucjp-win', 'sjis-win', 'EUC-JP');
-        $encoded    = mb_detect_encoding($data, $encode_arr);
-        $data       = mb_convert_encoding($data, $to, $encoded);
-        return $data;
-    }
-
     /**
      * - i.e 获取中文字符中每个中文字符的首拼.
      * - e.g. $utils->getFirstchar('你好啊') // NHA
@@ -90,4 +81,46 @@ class StrHandler
         }
         return $ret;
     }
+
+    private function getEncoding($data, $to)
+    {
+        $encode_arr = array('UTF-8', 'ASCII', 'GBK', 'GB2312', 'BIG5', 'JIS', 'eucjp-win', 'sjis-win', 'EUC-JP');
+        $encoded    = mb_detect_encoding($data, $encode_arr);
+        $data       = mb_convert_encoding($data, $to, $encoded);
+        return $data;
+    }
+
+    /**
+     * - i.e. sql语句过滤关键字
+     * - e.g.
+     *
+     * @param $str
+     * @return mixed
+     */
+    public function sqlStrFilter($str)
+    {
+        $str = str_replace("and", "&#97;nd", $str);
+        $str = str_replace("execute", "&#101;xecute", $str);
+        $str = str_replace("update", "&#117;pdate", $str);
+        $str = str_replace("count", "&#99;ount", $str);
+        $str = str_replace("chr", "&#99;hr", $str);
+        $str = str_replace("mid", "&#109;id", $str);
+        $str = str_replace("master", "&#109;aster", $str);
+        $str = str_replace("truncate", "&#116;runcate", $str);
+        $str = str_replace("char", "&#99;har", $str);
+        $str = str_replace("declare", "&#100;eclare", $str);
+        $str = str_replace("select", "&#115;elect", $str);
+        $str = str_replace("create", "&#99;reate", $str);
+        $str = str_replace("delete", "&#100;elete", $str);
+        $str = str_replace("insert", "&#105;nsert", $str);
+        $str = str_replace("'", "&#39;", $str);
+        $str = str_replace('"', "&#34;", $str);
+        $str = str_replace("\\", "", $str);
+        $str = str_replace('-', "", $str);
+        $str = str_replace('/', "", $str);
+        $str = str_replace('*', "", $str);
+
+        return $str;
+    }
+
 }
