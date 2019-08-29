@@ -16,6 +16,7 @@ composer require four-li/tools
 - [x] [自定义api请求SDK](/src/Document/sdk.md)
 - [x] [支付](/src/Document/pay.md)
 - [x] [IP解析](/src/Document/ip.md) 
+- [x] [模拟数据](src/Document/mock.md)
 - [x] [更多工具](/src/Document/utils.md)
 
 - [ ] 自定义助手函数(详情查看`spl/helpers.php`) 

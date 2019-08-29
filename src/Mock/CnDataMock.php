@@ -15,6 +15,53 @@ namespace FourLi\Tools\Mock;
  */
 class CnDataMock
 {
+
+    /**
+     * - i.e. 获得随机英文字符串
+     *
+     * @param int  $len     生成的长度
+     * @param bool $case    默认小写 true为包含大写
+     * @param bool $num     默认为不含数字
+     * @param bool $special 默认没有符号
+     * @return string
+     */
+    function getRandomStr($len, $case = false, $num = false, $special = false)
+    {
+        $chars = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+        if ($case) $chars = array_merge($chars, ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",]);
+        if ($num) $chars = array_merge($chars, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+        if ($special) $chars = array_merge($chars, ["!", "@", "#", "$", "?", "|", "{", "/", ":", ";", "%", "^", "&", "*", "(", ")", "-", "_", "[", "]", "}", "<", ">", "~", "+", "=", ",", "."]);
+
+        $charsLen = count($chars) - 1;
+        shuffle($chars);                            //打乱数组顺序
+        $str = '';
+        for ($i = 0; $i < $len; $i++) {
+            $str .= $chars[mt_rand(0, $charsLen)];    //随机取出一位
+        }
+        return $str;
+    }
+
+    public function getEmail()
+    {
+        $len     = mt_rand(5, 10);
+        $prefix  = $this->getRandomStr($len, 0, 1, 0);
+        $domains = ['qq', 'gmail', '163', 'yahoo', 'msn', 'hotmail', 'ask', 'live', '163.net', '263.net', 'yeah.net', 'mail', 'sohu', 'sina'];
+        $domain  = $domains[array_rand($domains, 1)];
+
+        return $prefix . '@' . $domain . '.com';
+    }
+
+    public function getNodeNo($length = 20): string
+    {
+        return substr(strtolower(substr(md5(serialize([
+                'time' => microtime(true),
+                's'    => mt_rand(10000, 99999999)
+            ])), 0, 30)) . strtolower(substr(md5(serialize([
+                'time' => microtime(true),
+                's'    => mt_rand(10000, 99999999)
+            ])), 0, 30)), 0, $length);
+    }
+
     public function getMobile()
     {
         $arr = array(
@@ -47,7 +94,7 @@ class CnDataMock
         $wei_num = rand(0, 327);
         $type    = rand(0, 0);
         if ($type == 0) {
-            $text = $tou[$tou_num] . $do[$do_num] . $wei[$wei_num] . $do[rand(0, 19)] . $tou[rand(0, 331)].$do[rand(0, 19)].$wei_num[rand(0, 327)].$do[rand(0, 19)].$wei_num[rand(0, 327)].$do[rand(0, 19)].$wei_num[rand(0, 327)].$do[rand(0, 19)].$wei_num[rand(0, 327)].$do[rand(0, 19)].$wei_num[rand(0, 327)].$do[rand(0, 19)].$wei_num[rand(0, 327)].$do[rand(0, 19)].$wei_num[rand(0, 327)].$do[rand(0, 19)].$wei_num[rand(0, 327)].$do[rand(0, 19)].$wei_num[rand(0, 327)] ;
+            $text = $tou[$tou_num] . $do[$do_num] . $wei[$wei_num] . $do[rand(0, 19)] . $tou[rand(0, 331)] . $do[rand(0, 19)] . $wei_num[rand(0, 327)] . $do[rand(0, 19)] . $wei_num[rand(0, 327)] . $do[rand(0, 19)] . $wei_num[rand(0, 327)] . $do[rand(0, 19)] . $wei_num[rand(0, 327)] . $do[rand(0, 19)] . $wei_num[rand(0, 327)] . $do[rand(0, 19)] . $wei_num[rand(0, 327)] . $do[rand(0, 19)] . $wei_num[rand(0, 327)] . $do[rand(0, 19)] . $wei_num[rand(0, 327)] . $do[rand(0, 19)] . $wei_num[rand(0, 327)];
         } else {
             $text = $wei[$wei_num] . $tou[$tou_num];
         }

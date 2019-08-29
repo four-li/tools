@@ -11,4 +11,10 @@ $userInfo['sign'] = $client->getText();
 
 $userInfo['mobile'] = $client->getMobile();
 
-var_dump($userInfo);
+$userInfo['email'] = $client->getEmail();
+
+$userInfo['no'] = $client->getNodeNo(40);
+
+$userInfo['str'] = $client->getRandomStr(20, true, true, true);
+
+print_r($userInfo);
