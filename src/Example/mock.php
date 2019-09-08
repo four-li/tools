@@ -17,4 +17,6 @@ $userInfo['no'] = $client->getNodeNo(40);
 
 $userInfo['str'] = $client->getRandomStr(20, true, true, true);
 
+$userInfo['avatar'] = $client->getAvatar();
+
 print_r($userInfo);

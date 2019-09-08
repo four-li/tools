@@ -6,6 +6,8 @@
 
 namespace FourLi\Tools\Mock;
 
+use Curl\Curl;
+
 /**
  * Class CnDataMock
  *
@@ -15,6 +17,28 @@ namespace FourLi\Tools\Mock;
  */
 class CnDataMock
 {
+
+    /**
+     * - 【 随机头像 】
+     *
+     * @return string
+     * @throws \ErrorException
+     */
+    function getAvatar(): string
+    {
+        $curl = new Curl();
+
+        $result = $curl->get("https://api.uomg.com/api/rand.img1?format=json");
+
+        $arr = json_decode($result, true);
+
+        if ($arr['code'] == 1) {
+            return $arr['imgurl'];
+        } else {
+            # $arr['msg'];
+            return '';
+        }
+    }
 
     /**
      * - i.e. 获得随机英文字符串
