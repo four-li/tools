@@ -20,9 +20,6 @@ class CnDataMock
 
     /**
      * - 【 随机头像 】
-     *
-     * @return string
-     * @throws \ErrorException
      */
     function getAvatar(): string
     {
@@ -30,14 +27,19 @@ class CnDataMock
 
         $result = $curl->get("https://api.uomg.com/api/rand.img1?format=json");
 
-        $arr = json_decode($result, true);
+        try {
+            $arr = json_decode($result, true);
+        } catch (\Exception $e) {
+            return '';
+        }
 
         if ($arr['code'] == 1) {
             return $arr['imgurl'];
         } else {
             # $arr['msg'];
-            return '';
         }
+
+        return '';
     }
 
     /**
