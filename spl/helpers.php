@@ -244,6 +244,9 @@ if (!function_exists('inStr')) {
      */
     function inStr($search, $haystack): bool
     {
+        if(!$haystack) return false;
+        if(!$search) return false;
+
         if (strpos($haystack, strval($search)) === false) {
             return false;
         } else {
@@ -266,20 +269,6 @@ if (!function_exists('toRoute')) {
 </html>', htmlspecialchars($url, ENT_QUOTES, 'UTF-8'));
         die;
     }
-}
-
-# 跳转路由
-function toRoute($url)
-{
-    echo sprintf(
-        '<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="0;url=%1$s" />
-</head>
-</html>', htmlspecialchars($url, ENT_QUOTES, 'UTF-8'));
-    die;
 }
 
 if (!defined('ENCRYPT_DEFAULT_KEY')) define('ENCRYPT_DEFAULT_KEY', 'zfi-0o.`;=');
